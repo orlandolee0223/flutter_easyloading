@@ -50,7 +50,7 @@ class EasyLoadingTheme {
       EasyLoading.instance.loadingStyle == EasyLoadingStyle.custom
           ? EasyLoading.instance.backgroundColor!
           : EasyLoading.instance.loadingStyle == EasyLoadingStyle.dark
-              ? Colors.black.withOpacity(0.9)
+              ? Colors.black
               : Colors.white;
 
   /// boxShadow color of loading
