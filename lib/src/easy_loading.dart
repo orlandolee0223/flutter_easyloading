@@ -252,12 +252,14 @@ class EasyLoading {
     EasyLoadingMaskType? maskType,
     bool? dismissOnTap,
   }) {
-    Widget w = indicator ?? (_instance.indicatorWidget ?? LoadingIndicator());
+    Widget w =
+        indicator ?? (_instance.indicatorWidget ?? const LoadingIndicator());
     return _instance._show(
       status: status,
       maskType: maskType,
       dismissOnTap: dismissOnTap,
       w: w,
+      loading: true,
     );
   }
 
@@ -420,6 +422,7 @@ class EasyLoading {
     EasyLoadingMaskType? maskType,
     bool? dismissOnTap,
     EasyLoadingToastPosition? toastPosition,
+    bool? loading,
   }) async {
     assert(
       overlayEntry != null,
@@ -472,6 +475,7 @@ class EasyLoading {
       maskType: maskType,
       dismissOnTap: dismissOnTap,
       completer: completer,
+      loading: loading,
     );
     completer.future.whenComplete(() {
       _callback(EasyLoadingStatus.show);
