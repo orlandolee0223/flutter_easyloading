@@ -199,6 +199,10 @@ class _Indicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 只有loading状态
+    if (loading == true && status == null && indicator is Widget) {
+      return indicator!;
+    }
     return Container(
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
