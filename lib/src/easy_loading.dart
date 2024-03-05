@@ -459,7 +459,7 @@ class EasyLoading {
       );
     }
 
-    toastPosition ??= EasyLoadingToastPosition.center;
+    toastPosition ??= EasyLoadingTheme.toastPosition;
     bool animation = _w == null;
     _progressKey = null;
     if (_key != null) await dismiss(animation: false);

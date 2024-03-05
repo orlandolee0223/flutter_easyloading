@@ -75,7 +75,7 @@ class EasyLoadingContainerState extends State<EasyLoadingContainer>
     super.initState();
     if (!mounted) return;
     _status = widget.status;
-    _alignment = (widget.indicator == null && widget.status?.isNotEmpty == true)
+    _alignment = (widget.loading == null && widget.status?.isNotEmpty == true)
         ? EasyLoadingTheme.alignment(widget.toastPosition)
         : AlignmentDirectional.center;
     _dismissOnTap =
@@ -204,7 +204,12 @@ class _Indicator extends StatelessWidget {
       return indicator!;
     }
     return Container(
-      margin: const EdgeInsets.all(10.0),
+      margin: EdgeInsets.fromLTRB(
+        10,
+        10 + MediaQuery.of(context).padding.top, // 安全距离
+        10,
+        10 + MediaQuery.of(context).padding.bottom, // 安全距离
+      ),
       decoration: BoxDecoration(
         color: EasyLoadingTheme.backgroundColor,
         borderRadius: BorderRadius.circular(
