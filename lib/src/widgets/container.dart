@@ -33,7 +33,7 @@ T? _ambiguate<T>(T? value) => value;
 
 class EasyLoadingContainer extends StatefulWidget {
   final Widget? indicator;
-  final String? status;
+  final dynamic status;
   final bool? dismissOnTap;
   final EasyLoadingToastPosition? toastPosition;
   final EasyLoadingMaskType? maskType;
@@ -59,7 +59,7 @@ class EasyLoadingContainer extends StatefulWidget {
 
 class EasyLoadingContainerState extends State<EasyLoadingContainer>
     with SingleTickerProviderStateMixin {
-  String? _status;
+  dynamic _status;
   Color? _maskColor;
   late AnimationController _animationController;
   late AlignmentGeometry _alignment;
@@ -75,7 +75,7 @@ class EasyLoadingContainerState extends State<EasyLoadingContainer>
     super.initState();
     if (!mounted) return;
     _status = widget.status;
-    _alignment = (widget.loading == null && widget.status?.isNotEmpty == true)
+    _alignment = (widget.loading == null && widget.status != null)
         ? EasyLoadingTheme.alignment(widget.toastPosition)
         : AlignmentDirectional.center;
     _dismissOnTap =
@@ -125,7 +125,7 @@ class EasyLoadingContainerState extends State<EasyLoadingContainer>
     }
   }
 
-  void updateStatus(String status) {
+  void updateStatus(dynamic status) {
     if (_status == status) return;
     setState(() {
       _status = status;
@@ -188,7 +188,7 @@ class EasyLoadingContainerState extends State<EasyLoadingContainer>
 
 class _Indicator extends StatelessWidget {
   final Widget? indicator;
-  final String? status;
+  final dynamic status;
   final bool? loading;
 
   const _Indicator({
@@ -231,7 +231,7 @@ class _Indicator extends StatelessWidget {
                         : EdgeInsets.zero,
                     child: indicator,
                   ),
-                if (status != null)
+                if (status is String)
                   Text(
                     status!,
                     style: EasyLoadingTheme.textStyle ??
@@ -241,6 +241,7 @@ class _Indicator extends StatelessWidget {
                         ),
                     textAlign: EasyLoadingTheme.textAlign,
                   ),
+                if (status is Widget) status,
               ],
             )
           : Row(
@@ -250,12 +251,12 @@ class _Indicator extends StatelessWidget {
               children: <Widget>[
                 if (indicator != null)
                   Container(
-                    margin: status?.isNotEmpty == true
+                    margin: status != null
                         ? EasyLoadingTheme.textPadding
                         : EdgeInsets.zero,
                     child: indicator,
                   ),
-                if (status != null)
+                if (status is String)
                   Flexible(
                     child: Text(
                       status!,
@@ -266,7 +267,8 @@ class _Indicator extends StatelessWidget {
                           ),
                       textAlign: EasyLoadingTheme.textAlign,
                     ),
-                  )
+                  ),
+                if (status is Widget) status,
               ],
             ),
     );

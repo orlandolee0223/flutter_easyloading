@@ -1,3 +1,7 @@
+## [3.1.4] - 2024.03.06
+
+* 🎉 support Widget
+
 ## [3.1.3] - 2024.03.06
 
 * 🎉 fixed toastPosition

@@ -247,7 +247,7 @@ class EasyLoading {
 
   /// show loading with [status] [indicator] [maskType]
   static Future<void> show({
-    String? status,
+    dynamic status,
     Widget? indicator,
     EasyLoadingMaskType? maskType,
     bool? dismissOnTap,
@@ -305,7 +305,7 @@ class EasyLoading {
 
   /// showSuccess [status] [duration] [maskType]
   static Future<void> showSuccess(
-    String status, {
+    dynamic status, {
     Duration? duration,
     EasyLoadingMaskType? maskType,
     bool? dismissOnTap,
@@ -327,7 +327,7 @@ class EasyLoading {
 
   /// showError [status] [duration] [maskType]
   static Future<void> showError(
-    String status, {
+    dynamic status, {
     Duration? duration,
     EasyLoadingMaskType? maskType,
     bool? dismissOnTap,
@@ -349,7 +349,8 @@ class EasyLoading {
 
   /// showInfo [status] [duration] [maskType]
   static Future<void> showInfo(
-    String status, {
+    dynamic status, {
+    Widget? content,
     Duration? duration,
     EasyLoadingMaskType? maskType,
     bool? dismissOnTap,
@@ -371,7 +372,7 @@ class EasyLoading {
 
   /// showToast [status] [duration] [toastPosition] [maskType]
   static Future<void> showToast(
-    String status, {
+    dynamic status, {
     Duration? duration,
     EasyLoadingToastPosition? toastPosition,
     EasyLoadingMaskType? maskType,
@@ -417,7 +418,7 @@ class EasyLoading {
   /// show [status] [duration] [toastPosition] [maskType]
   Future<void> _show({
     Widget? w,
-    String? status,
+    dynamic status,
     Duration? duration,
     EasyLoadingMaskType? maskType,
     bool? dismissOnTap,
